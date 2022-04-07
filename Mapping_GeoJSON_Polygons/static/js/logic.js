@@ -48,25 +48,25 @@ console.log("working");
 // ];
 
 // Add GeoJSON data.
-let sanFranAirport =
-{"type":"FeatureCollection","features":[{
-    "type":"Feature",
-    "properties":{
-        "id":"3469",
-        "name":"San Francisco International Airport",
-        "city":"San Francisco",
-        "country":"United States",
-        "state":"California",
-        "faa":"SFO",
-        "icao":"KSFO",
-        "alt":"13",
-        "tz-offset":"-8",
-        "dst":"A",
-        "tz":"America/Los_Angeles"},
-        "geometry":{
-            "type":"Point",
-            "coordinates":[-122.375,37.61899948120117]}}
-]};
+// let sanFranAirport =
+// {"type":"FeatureCollection","features":[{
+//     "type":"Feature",
+//     "properties":{
+//         "id":"3469",
+//         "name":"San Francisco International Airport",
+//         "city":"San Francisco",
+//         "country":"United States",
+//         "state":"California",
+//         "faa":"SFO",
+//         "icao":"KSFO",
+//         "alt":"13",
+//         "tz-offset":"-8",
+//         "dst":"A",
+//         "tz":"America/Los_Angeles"},
+//         "geometry":{
+//             "type":"Point",
+//             "coordinates":[-122.375,37.61899948120117]}}
+// ]};
 
 // Grabbing our GeoJSON data.
 // L.geoJSON(sanFranAirport).addTo(map);
@@ -83,12 +83,12 @@ let sanFranAirport =
 // }).addTo(map);
 
 // Grabbing our GeoJSON data, Using "onEachFeature" call back function.
-L.geoJSON(sanFranAirport, {
-  onEachFeature: function(feature, layer) {
-    console.log(layer);
-    layer.bindPopup("<h2>Airport code: " + feature.properties.faa + "</h2> <hr> <h3>Airport name: " + feature.properties.name + "</h3>");
-  }
-})
+// L.geoJSON(sanFranAirport, {
+//   onEachFeature: function(feature, layer) {
+//     console.log(layer);
+//     layer.bindPopup("<h2>Airport code: " + feature.properties.faa + "</h2> <hr> <h3>Airport name: " + feature.properties.name + "</h3>");
+//   }
+// })
 // have to close out to enable the multiple layers in 5.4
 // }).addTo(map);
 
@@ -163,7 +163,7 @@ L.geoJSON(sanFranAirport, {
 
 // Get data from cities.js
 // This code replaces "cities array" on line 32 
-var cityData = cities;
+//var cityData = cities;
 
   // Loop(iterate) through the cities array and create one marker for each city,
   //  can also use "for (let i = 0; i < cities.length; i++)"
@@ -199,22 +199,28 @@ var cityData = cities;
 
 // We create the tile layer that will be the background of our map.
 // Changed map style to "satellite-streets-v11"
-let dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     accessToken: API_KEY
 });
 
-let light = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+let satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     accessToken: API_KEY
 });
 
 // Create a base layer that holds both maps.
+// let baseMaps = {
+//   Dark: dark,
+//   Light: light
+// };
+
+//  Working section 5.6, we are chaning map styles to "Streets and Satlellite Street".
 let baseMaps = {
-  Dark: dark,
-  Light: light
+  "Streets": streets,
+  "Satellite Street": satelliteStreets
 };
 
 // // Create the map object with center, zoom level and default layer.
@@ -225,11 +231,18 @@ let baseMaps = {
 // })
 
 // Create the map object with center, zoom level and default layer.
-let map = L.map('mapid', {
-  center: [44, -80.0],
-  zoom: 2,
+// let map = L.map('mapid', {
+//   center: [44, -80.0],
+//   zoom: 2,
 
-  layers: [dark]
+//   layers: [dark]
+// })
+
+// working 5.6, changing map object center to center of Totoronto, zoom level and default layer.
+let map = L.map('mapid', {
+  center: [43.7, -79.3],
+  zoom: 11,
+  layers: [streets]
 })
 
 // Pass our map layers into our layers control and add the layers control to the map.
@@ -253,6 +266,11 @@ let airportData = "https://raw.githubusercontent.com/bradrobe/Mapping_Earthquake
 
 // Accessing the Toronto airline routes GeoJSON URL.
 let torontoData = "https://raw.githubusercontent.com/bradrobe/Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/torontoRoutes.json";
+
+// Accessing the Toronto neighborhoods GeoJSON URL.
+let torontoHoods = "https://raw.githubusercontent.com/bradrobe/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/torontoNeighborhoods.json";
+
+
 // Grabbing our GeoJSON data, Using "d3.json" call back function with "then()" method.
 
 // d3.json(airportData).then(function(data) {
@@ -271,21 +289,36 @@ let torontoData = "https://raw.githubusercontent.com/bradrobe/Mapping_Earthquake
 // });
 
 // Create a style for the lines.  This code makes it easier to read.
-let myStyle = {
-  color: "#ffffa1",
-  weight: 2
-}
+// let myStyle = {
+//   color: "#ffffa1",
+//   weight: 2
+// }
+
+
+// //  Edit for torontoRoutes.json
+// d3.json(torontoData).then(function(data) {
+//   console.log(data);
+// // Creating a GeoJSON layer with the retrieved data.
+// L.geoJSON(data, {
+//   style: myStyle,
+//   onEachFeature: function(feature, layer) {
+//         console.log(layer);
+//         layer.bindPopup("<h2>Airline: " + feature.properties.airline + "</h2> <hr> <h3>Destination: " + feature.properties.dst + "</h3>");
+//       } 
+// }).addTo(map);
+// });
 
 //  Edit for torontoRoutes.json
-d3.json(torontoData).then(function(data) {
+d3.json(torontoHoods).then(function(data) {
   console.log(data);
 // Creating a GeoJSON layer with the retrieved data.
 L.geoJSON(data, {
-  style: myStyle,
+  fillColor: 'yellow',
+  color: 'blue',
+  weight: 1,
   onEachFeature: function(feature, layer) {
         console.log(layer);
-        layer.bindPopup("<h2>Airline: " + feature.properties.airline + "</h2> <hr> <h3>Destination: " + feature.properties.dst + "</h3>");
+        layer.bindPopup("<h2>Neighborhood: " + feature.properties.AREA_NAME + "</h2>");
       } 
 }).addTo(map);
 });
-
