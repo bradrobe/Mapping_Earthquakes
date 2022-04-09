@@ -21,6 +21,6 @@ This is an additional map with the major earthquakes in different colors:
 •	Magnitude 6 + : Black
 •	Magnitude 5 + : Grey
 •	Magnitude - 5 : Silver
-![image]https://github.com/bradrobe/ExcelChallenge1/blob/main/Outcomes_vs_Goals.png
+![image](https://github.com/bradrobe/Mapping_Earthquakes/blob/main/Earthquake_Challenge/Images/Dark_Map_image_2.png)
 
  
