@@ -7,20 +7,20 @@ The challenge consisted of created three maps.  The first map was established to
 ## Challenge Summary:
 
 The first image shows tectonic plates and earthquakes ranging in magnitude of 0 to plus 5.
-
+![image]https://github.com/bradrobe/ExcelChallenge1/blob/main/Outcomes_vs_Goals.png
  
 
 The second image displays tectonic plates and major earthquakes.
-
+![image]https://github.com/bradrobe/ExcelChallenge1/blob/main/Outcomes_vs_Goals.png
  
 The third image displays tectonic plates, all earthquakes on a dark map.
-
+![image]https://github.com/bradrobe/ExcelChallenge1/blob/main/Outcomes_vs_Goals.png
  
 
 This is an additional map with the major earthquakes in different colors:
 •	Magnitude 6 + : Black
 •	Magnitude 5 + : Grey
 •	Magnitude - 5 : Silver
-
+![image]https://github.com/bradrobe/ExcelChallenge1/blob/main/Outcomes_vs_Goals.png
 
  
