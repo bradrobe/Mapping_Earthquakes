@@ -14,7 +14,7 @@ The second image displays tectonic plates and major earthquakes.
 ![image](https://github.com/bradrobe/Mapping_Earthquakes/blob/main/Earthquake_Challenge/Images/Deliverable_3.png)
 
 The third image displays tectonic plates, all earthquakes on a dark map.
-![image]https://github.com/bradrobe/ExcelChallenge1/blob/main/Outcomes_vs_Goals.png
+![image](https://github.com/bradrobe/Mapping_Earthquakes/blob/main/Earthquake_Challenge/Images/Dark_Map_image.png)
  
 
 This is an additional map with the major earthquakes in different colors:
