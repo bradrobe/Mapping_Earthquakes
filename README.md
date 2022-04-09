@@ -7,7 +7,7 @@ The challenge consisted of created three maps.  The first map was established to
 ## Challenge Summary:
 
 The first image shows tectonic plates and earthquakes ranging in magnitude of 0 to plus 5.
-![image]https://github.com/bradrobe/ExcelChallenge1/blob/main/Outcomes_vs_Goals.png
+![image](https://github.com/bradrobe/Mapping_Earthquakes/blob/main/Earthquake_Challenge/Images/Deliverable_1_image.png)
  
 
 The second image displays tectonic plates and major earthquakes.
